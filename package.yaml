@@ -20,6 +20,8 @@ description:         Please see the README on GitHub at <https://github.com/jtt9
 dependencies:
 - base >= 4.7 && < 5
 - text
+- directory
+- filepath
 
 ghc-options:
 - -Wall
@@ -43,6 +45,7 @@ executables:
   aoc2025-exe:
     main:                Main.hs
     source-dirs:         app
+    other-modules:       []
     ghc-options:
     - -threaded
     - -rtsopts
@@ -50,11 +53,24 @@ executables:
     dependencies:
     - aoc2025
     - optparse-applicative
+  fmt-exe:
+    main:                Fourmolu.hs
+    source-dirs:         app
+    other-modules:       []
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aoc2025
+    - fourmolu
 
 tests:
   aoc2025-test:
     main:                Spec.hs
     source-dirs:         test
+    other-modules:
+    - Test.Days.Day0
     ghc-options:
     - -threaded
     - -rtsopts
@@ -62,3 +78,14 @@ tests:
     dependencies:
     - aoc2025
     - HUnit
+  fmt-test:
+    main:                Fourmolu.hs
+    source-dirs:         test
+    other-modules:       []
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aoc2025
+    - fourmolu

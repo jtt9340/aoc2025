@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.37.0.
+-- This file has been generated from package.yaml by hpack version 0.38.1.
 --
 -- see: https://github.com/sol/hpack
 
@@ -27,6 +27,7 @@ library
   exposed-modules:
       Days.Day
       Days.Day0
+      Util.Directory
   other-modules:
       Paths_aoc2025
   autogen-modules:
@@ -38,15 +39,13 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , directory
+    , filepath
     , text
   default-language: GHC2024
 
 executable aoc2025-exe
   main-is: Main.hs
-  other-modules:
-      Paths_aoc2025
-  autogen-modules:
-      Paths_aoc2025
   hs-source-dirs:
       app
   default-extensions:
@@ -55,7 +54,25 @@ executable aoc2025-exe
   build-depends:
       aoc2025
     , base >=4.7 && <5
+    , directory
+    , filepath
     , optparse-applicative
+    , text
+  default-language: GHC2024
+
+executable fmt-exe
+  main-is: Fourmolu.hs
+  hs-source-dirs:
+      app
+  default-extensions:
+      MultiParamTypeClasses
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aoc2025
+    , base >=4.7 && <5
+    , directory
+    , filepath
+    , fourmolu
     , text
   default-language: GHC2024
 
@@ -64,9 +81,6 @@ test-suite aoc2025-test
   main-is: Spec.hs
   other-modules:
       Test.Days.Day0
-      Paths_aoc2025
-  autogen-modules:
-      Paths_aoc2025
   hs-source-dirs:
       test
   default-extensions:
@@ -76,5 +90,24 @@ test-suite aoc2025-test
       HUnit
     , aoc2025
     , base >=4.7 && <5
+    , directory
+    , filepath
+    , text
+  default-language: GHC2024
+
+test-suite fmt-test
+  type: exitcode-stdio-1.0
+  main-is: Fourmolu.hs
+  hs-source-dirs:
+      test
+  default-extensions:
+      MultiParamTypeClasses
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aoc2025
+    , base >=4.7 && <5
+    , directory
+    , filepath
+    , fourmolu
     , text
   default-language: GHC2024

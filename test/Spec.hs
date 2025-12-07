@@ -1,10 +1,10 @@
 module Main (main) where
 
-import Test.HUnit
 import Test.Days.Day0
+import Test.HUnit
 
 tests :: Test
-tests = test [ testDay0 ]
+tests = test [testDay0]
 
 main :: IO ()
 main = runTestTTAndExit tests

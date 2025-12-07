@@ -1,6 +1,6 @@
 {-# LANGUAGE FunctionalDependencies #-}
 
-module Days.Day (Day(..)) where
+module Days.Day (Day (..)) where
 
 import Data.Text.Lazy (LazyText)
 
