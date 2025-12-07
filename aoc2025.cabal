@@ -111,3 +111,19 @@ test-suite fmt-test
     , fourmolu
     , text
   default-language: GHC2024
+
+test-suite hlint-test
+  type: exitcode-stdio-1.0
+  main-is: HLint.hs
+  hs-source-dirs:
+      test
+  default-extensions:
+      MultiParamTypeClasses
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , directory
+    , filepath
+    , hlint
+    , text
+  default-language: GHC2024

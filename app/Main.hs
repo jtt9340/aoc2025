@@ -93,14 +93,12 @@ runAoc (Args{day, part, puzzleInput}) = do
 
 runPart :: forall a part1 part2. (D.Day a part1 part2) => LazyText -> Part -> IO ()
 runPart input p =
-    ( when
+    when
         (p == BothParts || p == Part1)
         (print . D.part1 $ parsedInput)
-    )
-        >> ( when
-                (p == BothParts || p == Part2)
-                (print . D.part2 $ parsedInput)
-           )
+        >> when
+            (p == BothParts || p == Part2)
+            (print . D.part2 $ parsedInput)
   where
     parsedInput :: a
     parsedInput = D.parseDay input
