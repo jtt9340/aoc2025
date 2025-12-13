@@ -9,7 +9,7 @@ import qualified Data.Text.Lazy as L
 newtype Day1 = Day1 [Int]
     deriving (Show, Eq)
 
-instance Day Day1 Int Undefined where
+instance Day Day1 Int Int where
     parseDay = Day1 . mapMaybe parseRotation . L.lines
       where
         parseRotation ('L' L.:< mag) = Just . negate . parseInt $ mag
@@ -18,7 +18,7 @@ instance Day Day1 Int Undefined where
 
     part1 (Day1 rotations) =
         snd
-            $ foldl
+            $ foldl'
                 ( \(dial, password) rotation ->
                     let newDial = (dial + rotation) `mod` 100
                      in (newDial, if newDial == 0 then password + 1 else password)
@@ -26,4 +26,12 @@ instance Day Day1 Int Undefined where
                 (50, 0)
                 rotations
 
-    part2 = undefined
+    part2 (Day1 rotations) =
+        snd
+            $ foldl'
+                ( \(dial, password) rotation ->
+                    let (n, newDial) = (dial + rotation) `divMod` 100
+                     in (newDial, password + abs n)
+                )
+                (50, 0)
+                rotations

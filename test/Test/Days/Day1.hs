@@ -21,6 +21,12 @@ testPart1Sample = actual @?= expected
     actual = part1 input
     expected = 3
 
+testPart2Sample :: Assertion
+testPart2Sample = actual @?= expected
+  where
+    actual = part2 input
+    expected = 6
+
 testPart1 :: Assertion
 testPart1 = do
     inputFixture <- LIO.readFile "fixtures/day1-input.txt"
@@ -28,10 +34,19 @@ testPart1 = do
     let actual = part1 parsedInput
     actual @?= 1154
 
+testPart2 :: Assertion
+testPart2 = do
+    inputFixture <- LIO.readFile "fixtures/day1-input.txt"
+    let parsedInput = parseDay inputFixture :: Day1
+    let actual = part2 parsedInput
+    actual @?= 6819
+
 testDay1 :: Test
 testDay1 =
     "Day 1"
         ~: [ "parseInput" ~: testParseInput
            , "testPart1Sample" ~: testPart1Sample
+           , "testPart2Sample" ~: testPart2Sample
            , "testPart1" ~: testPart1
+           , "testPart2" ~: testPart2
            ]
