@@ -29,11 +29,8 @@ testPart2 = actual @?= expected
 
 testDay0 :: Test
 testDay0 =
-    TestLabel
-        "Day 0"
-        ( TestList
-            [ TestLabel "parseInput" (TestCase testParseInput)
-            , TestLabel "Part 1" (TestCase testPart1)
-            , TestLabel "Part 2" (TestCase testPart2)
-            ]
-        )
+    "Day 0"
+        ~: [ "parseInput" ~: testParseInput
+           , "Part 1" ~: testPart1
+           , "Part 2" ~: testPart2
+           ]

@@ -27,7 +27,9 @@ library
   exposed-modules:
       Days.Day
       Days.Day0
+      Days.Day1
       Util.Directory
+      Util.Parsing
   other-modules:
       Paths_aoc2025
   autogen-modules:
@@ -81,6 +83,8 @@ test-suite aoc2025-test
   main-is: Spec.hs
   other-modules:
       Test.Days.Day0
+      Test.Days.Day1
+      Test.Util.Parsing
   hs-source-dirs:
       test
   default-extensions:

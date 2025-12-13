@@ -71,6 +71,8 @@ tests:
     source-dirs:         test
     other-modules:
     - Test.Days.Day0
+    - Test.Days.Day1
+    - Test.Util.Parsing
     ghc-options:
     - -threaded
     - -rtsopts
