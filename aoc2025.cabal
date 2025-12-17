@@ -28,6 +28,7 @@ library
       Days.Day
       Days.Day0
       Days.Day1
+      Days.Day2
       Util.Directory
       Util.Parsing
   other-modules:
