@@ -26,14 +26,14 @@ testPart1 :: Assertion
 testPart1 = do
     inputFixture <- LIO.readFile "fixtures/day1-input.txt"
     let parsedInput = parseDay inputFixture :: Day1
-    let actual = part1 parsedInput
+        actual = part1 parsedInput
     actual @?= 1154
 
 testPart2 :: Assertion
 testPart2 = do
     inputFixture <- LIO.readFile "fixtures/day1-input.txt"
     let parsedInput = parseDay inputFixture :: Day1
-    let actual = part2 parsedInput
+        actual = part2 parsedInput
     actual @?= 6819
 
 testDay1 :: Test

@@ -3,6 +3,7 @@ module Days.Day2 (Day2 (..), decrement, expandRangeOnto) where
 import Control.Exception (assert)
 import Data.Char
 import Data.Foldable
+import Data.Function
 import Data.Monoid
 import Data.Text (StrictText)
 import Days.Day
@@ -63,7 +64,10 @@ expandRangeOnto lower upper expanded
     | lower == upper = upper : expanded
     | otherwise = expandRangeOnto lower (decrement upper) (upper : expanded)
 
-instance Day Day2 Int Undefined where
+sumInvalidIds :: (StrictText -> Bool) -> [StrictText] -> Int
+sumInvalidIds isInvalidId = getSum . foldMap' (Sum . parseInt') . filter isInvalidId
+
+instance Day Day2 Int Int where
     parseDay =
         Day2
             . ids
@@ -84,10 +88,20 @@ instance Day Day2 Int Undefined where
                 emptyParseState
             . (',' `L.cons`)
 
-    part1 (Day2 ids) = getSum . foldMap' (Sum . parseInt') $ filter isInvalidId ids
+    part1 (Day2 ids) = sumInvalidIds isInvalidId ids
       where
         isInvalidId i =
             let l = T.length i `div` 2
              in T.take l i == T.drop l i
 
-    part2 = undefined
+    part2 (Day2 ids) = sumInvalidIds isInvalidId ids
+      where
+        isInvalidId i =
+            any
+                ( \prefix ->
+                    let n = (div `on` T.length) i prefix
+                     in n > 1 && T.replicate n prefix == i
+                )
+                . dropWhile T.null
+                . T.inits
+                $ i
