@@ -3,17 +3,10 @@ module Test.Days.Day0 (testDay0) where
 import Days.Day
 import Days.Day0
 import Test.HUnit
-
-import qualified Data.Text.Lazy.IO as LIO
+import Test.Util
 
 input :: Day0
 input = Day0 [0 .. 10]
-
-testParseInput :: Assertion
-testParseInput = do
-    inputFixture <- LIO.readFile "fixtures/day0-input.txt"
-    let parsedInput = parseDay inputFixture
-    parsedInput @?= input
 
 testPart1 :: Assertion
 testPart1 = actual @?= expected
@@ -30,7 +23,7 @@ testPart2 = actual @?= expected
 testDay0 :: Test
 testDay0 =
     "Day 0"
-        ~: [ "parseInput" ~: testParseInput
+        ~: [ "parseDay" ~: testParseDay "fixtures/day0-input.txt" input
            , "Part 1" ~: testPart1
            , "Part 2" ~: testPart2
            ]

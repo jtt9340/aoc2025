@@ -12,6 +12,7 @@ import qualified Data.Text.Lazy.IO as LIO
 import qualified Days.Day as D
 import qualified Days.Day0 as Day0
 import qualified Days.Day1 as Day1
+import qualified Days.Day2 as Day2
 
 data Day
     = Day0
@@ -91,6 +92,7 @@ runAoc (Args{day, part, puzzleInput}) = do
     case day of
         Day0 -> runPart @Day0.Day0 input part
         Day1 -> runPart @Day1.Day1 input part
+        Day2 -> runPart @Day2.Day2 input part
         _ -> die "error: day not yet implemented"
 
 runPart :: forall a part1 part2. (D.Day a part1 part2) => LazyText -> Part -> IO ()

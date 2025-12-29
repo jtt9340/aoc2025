@@ -85,6 +85,8 @@ test-suite aoc2025-test
   other-modules:
       Test.Days.Day0
       Test.Days.Day1
+      Test.Days.Day2
+      Test.Util
       Test.Util.Parsing
   hs-source-dirs:
       test
