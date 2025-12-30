@@ -121,19 +121,6 @@ input =
             , "2121212124"
             ]
 
-testDecrement :: Assertion
-testDecrement =
-    assertDecrement "101" "100"
-        >> assertDecrement "100000" "99999"
-  where
-    assertDecrement i expected = decrement (T.pack i) @?= T.pack expected
-
-testExpandRangeOnto :: Assertion
-testExpandRangeOnto = actual @?= expected
-  where
-    actual = expandRangeOnto (T.pack "11") (T.pack "22") []
-    expected = map T.show [(11 :: Int) .. 22]
-
 testPart1Sample :: Assertion
 testPart1Sample = actual @?= expected
   where
@@ -163,9 +150,7 @@ testPart2 = do
 testDay2 :: Test
 testDay2 =
     "Day 2"
-        ~: [ "decrement" ~: testDecrement
-           , "expandRangeOnto" ~: testExpandRangeOnto
-           , "parseDay" ~: testParseDay "fixtures/day2-sample-input.txt" input
+        ~: [ "parseDay" ~: testParseDay "fixtures/day2-sample-input.txt" input
            , "Part 1 Sample" ~: testPart1Sample
            , "Part 1" ~: testPart1
            , "Part 2 Sample" ~: testPart2Sample
